@@ -1,7 +1,6 @@
 import React from "react";
 import { Inter } from "next/font/google";
-// import { useTheme } from "next-themes";
-import { Providers } from "./provider";
+import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -15,11 +14,13 @@ export const metadata = () => {
 };
 
 export default function RootLayout({ children }) {
-  // const { theme } = useTheme();
+
   return (
-    <html lang="en" className=" h-screen"  suppressHydrationWarning>
+    <html lang="en" className=" h-screen" suppressHydrationWarning>
       <body className={`${inter.className}`}>
-        <Providers>{children}</Providers>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
