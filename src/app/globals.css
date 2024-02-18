@@ -2,33 +2,132 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --color-bkg: 255 255 255;
-  --color-content: 0 0 0;
+.hero-message {
+  display: "inline-block";
+
+  /* vertical-align: "top"; */
+  text-decoration: "inherit";
+  max-width: 334px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bkg: 0 0 0;
-    --color-content: 255 255 255;
+.header {
+  display: "inline-block";
+  opacity: 0;
+  animation: dropIn 0.5s ease-out forwards 0.5s;
+}
+
+/* CSS for drop-in animation */
+@keyframes dropIn {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
-.data-theme[data-theme="dark"] {
-  --color-bkg: 0 0 0;
-  --color-content: 255 255 255;
-}
-.data-theme[data-theme="light"] {
-  --color-bkg: 255 255 255;
-  --color-content: 0 0 0;
+/* CSS for slide-in animation */
+@keyframes slideIn {
+  0% {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
-/* body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-} */
+.p-slide-in {
+  opacity: 0;
+  animation: slideIn 0.5s ease-out forwards 1s; /* Delay the slide-in animation */
+}
+
+/* Media query for screens with a minimum width of 768px */
+@media (min-width: 768px) {
+  .hero-message {
+    max-width: 570px;
+  }
+}
+
+/* Media query for screens with a minimum width of 1024px */
+@media (min-width: 1024px) {
+  .hero-message {
+    max-width: 570px;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
